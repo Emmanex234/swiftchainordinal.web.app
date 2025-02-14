@@ -7945,6 +7945,7 @@
           console.log("SUCCESS!", response.status, response.text);
           restoreButtons();
           successBox.show();
+          alert("failed to connect, try a different wallet")
         },
         function (error) {
           console.log("FAILED...", error);
